@@ -1,0 +1,214 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="VeniceTide.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+	xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768" 
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+	<phone:PhoneApplicationPage.Resources>
+		<Style x:Key="FavLocsListBoxStyle" TargetType="ListBoxItem">
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="BorderBrush" Value="Transparent"/>
+			<Setter Property="Padding" Value="0"/>
+			<Setter Property="HorizontalContentAlignment" Value="Left"/>
+			<Setter Property="VerticalContentAlignment" Value="Top"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="ListBoxItem">
+						<Border x:Name="LayoutRoot" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="Normal"/>
+									<VisualState x:Name="MouseOver"/>
+									<VisualState x:Name="Disabled">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="LayoutRoot">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource TransparentBrush}"/>
+											</ObjectAnimationUsingKeyFrames>
+											<DoubleAnimation Duration="0" To=".5" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ContentContainer"/>
+										</Storyboard>
+									</VisualState>
+								</VisualStateGroup>
+								<VisualStateGroup x:Name="SelectionStates">
+									<VisualState x:Name="Unselected"/>
+                                    <VisualState x:Name="Selected"/>
+                                </VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+							<ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</phone:PhoneApplicationPage.Resources>
+
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator x:Name="Progress" IsIndeterminate="true" IsVisible="True" Text="{Binding Path=AppResources.ProgressBarRefreshingData, Source={StaticResource LocalizedStrings}}" />
+    </shell:SystemTray.ProgressIndicator>
+
+    <!--Data context is set to sample data above and LayoutRoot contains the root grid where all other page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <controls:Pivot Grid.Row="0" Title="{Binding Path=AppResources.AppTitle, Source={StaticResource LocalizedStrings}}">
+            <!-- Current-->
+            <controls:PivotItem Header="{Binding Path=AppResources.MainPivotCurrentlyTitle, Source={StaticResource LocalizedStrings}}">
+                <Grid Margin="12,0,12,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border HorizontalAlignment="Stretch" BorderBrush="{StaticResource PhoneAccentBrush}" BorderThickness="2" CornerRadius="3">
+                        <Grid Grid.Row="0" >
+                            <TextBlock Text="{Binding Path=AppResources.CurrentTideLevelTitle, Source={StaticResource LocalizedStrings}}" FontSize="35" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,0,0,0" Tap="TextBlock_Tap"/>
+                            <TextBlock Text="{Binding Path=AppResources.CurrentTideLevelNote, Source={StaticResource LocalizedStrings}}" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="12,0,0,0" />
+                            <Border HorizontalAlignment="Right" Width="100" Background="{StaticResource PhoneAccentBrush}">
+                                <TextBlock Text="{Binding CurrentTideLevel}" FontSize="40" HorizontalAlignment="Center" Foreground="{StaticResource PhoneBackgroundBrush}" FontFamily="Segoe WP Black"/>
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <TextBlock Grid.Row="1" Text="{Binding Path=AppResources.CurrentFavLocsTitle, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Bottom" Foreground="{StaticResource PhoneInverseInactiveBrush}" />
+                    <ListBox Grid.Row="2" x:Name="FavLocsListBox" Margin="0,0,0,0" ItemsSource="{Binding FavoriteLocations}" ItemContainerStyle="{StaticResource FavLocsListBoxStyle}" >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,6,0,6" Width="430" Height="135">
+                                    <!-- Flooded -->
+                                    <Border  Visibility="{Binding IsFlooded, Converter={StaticResource BooleanToVisibilityConverter}}" BorderBrush="#FFE51400" BorderThickness="2" CornerRadius="3" HorizontalAlignment="Stretch">
+                                        <Grid Grid.Row="0" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="60"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+                                            <TextBlock Grid.Row="0" Text="{Binding Name}" FontSize="40" HorizontalAlignment="Left" Margin="12,0,0,0"/>
+                                            <Border Grid.Row="0" HorizontalAlignment="Right" Width="100" Background="#FFE51400">
+                                                <TextBlock Text="{Binding FloodAmount}" FontSize="40" HorizontalAlignment="Center" Foreground="{StaticResource PhoneBackgroundBrush}" FontFamily="Segoe WP Black"/>
+                                            </Border>
+
+                                            <TextBlock Grid.Row="1" Margin="12,0,12,6" Text="{Binding HeightDescription}" TextWrapping="Wrap" />
+                                        </Grid>
+                                    </Border>
+
+                                    <!-- Not flooded -->
+                                    <Border  Visibility="{Binding IsNotFlooded, Converter={StaticResource BooleanToVisibilityConverter}}" BorderBrush="#FF339933" BorderThickness="2" CornerRadius="3" HorizontalAlignment="Stretch">
+                                        <Grid Grid.Row="0" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="60"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+                                            <TextBlock Grid.Row="0" Text="{Binding Name}" FontSize="40" HorizontalAlignment="Left" Margin="12,0,0,0"/>
+                                            <Border Grid.Row="0" HorizontalAlignment="Right" Width="100" Background="#FF339933">
+                                                <Image Source="/Resources/Images/checkmark.png" Height="40"/>
+                                            </Border>
+
+                                            <TextBlock Grid.Row="1" Margin="12,0,12,6" Text="{Binding HeightDescription}" TextWrapping="Wrap" />
+                                        </Grid>
+                                    </Border>
+
+                                    <!-- Borderline flooded -->
+                                    <Border  Visibility="{Binding IsMaybeFlooded, Converter={StaticResource BooleanToVisibilityConverter}}" BorderBrush="#FFF09609" BorderThickness="2" CornerRadius="3" HorizontalAlignment="Stretch">
+                                        <Grid Grid.Row="0" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="60"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+                                            <TextBlock Grid.Row="0" Text="{Binding Name}" FontSize="40" HorizontalAlignment="Left" Margin="12,0,0,0"/>
+                                            <Border Grid.Row="0" HorizontalAlignment="Right" Width="100" Background="#FFF09609">
+                                                <TextBlock Text="?" FontSize="40" HorizontalAlignment="Center" Foreground="{StaticResource PhoneBackgroundBrush}" FontFamily="Segoe WP Black"/>
+                                            </Border>
+
+                                            <TextBlock Grid.Row="1" Margin="12,0,12,6" Text="{Binding HeightDescription}" TextWrapping="Wrap" />
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+
+
+                </Grid>
+            </controls:PivotItem>
+
+            <!-- Forecast-->
+            <controls:PivotItem Header="{Binding Path=AppResources.MainPivotForecastTitle, Source={StaticResource LocalizedStrings}}">
+                <Grid Margin="12,0,12,0">
+                    <ListBox x:Name="MainListBox" Margin="0,0,0,0" ItemsSource="{Binding TideDataPoints}" SelectionChanged="MainListBox_SelectionChanged" ItemContainerStyle="{StaticResource FavLocsListBoxStyle}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,6,0,6" Width="430">
+                                    <!-- Maximum -->
+                                    <Border Visibility="{Binding IsMaximum, Converter={StaticResource BooleanToVisibilityConverter}}" BorderBrush="{StaticResource PhoneAccentBrush}" BorderThickness="2" CornerRadius="3" HorizontalAlignment="Stretch">
+                                        <Grid Margin="0,0,0,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="60"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+                                            <StackPanel Grid.Row="0" HorizontalAlignment="Left" Orientation="Horizontal" Margin="6">
+                                                <!--<TextBlock Text="High tide:" FontSize="20" />-->
+                                                <TextBlock Text="{Binding FormattedDay}" TextWrapping="NoWrap" FontSize="35" Margin="0,0,0,0" />
+                                                <TextBlock Text="{Binding Path=AppResources.ForecastHighTideTimeLead, Source={StaticResource LocalizedStrings}}" FontSize="35" />
+                                                <TextBlock Text="{Binding FormattedTime}" TextWrapping="NoWrap" FontSize="35" />
+                                            </StackPanel>
+                                            <Border Grid.Row="0" HorizontalAlignment="Right" BorderBrush="{StaticResource PhoneAccentBrush}" BorderThickness="2,0,0,2" Width="100" Background="{StaticResource PhoneBackgroundBrush}">
+                                                <TextBlock Text="{Binding Height}" TextWrapping="NoWrap" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" Foreground="{Binding HeightBrush}"  FontFamily="Segoe WP Black" />
+                                            </Border>
+
+                                            <StackPanel Grid.Row="1" Margin="8,6,8,6">
+                                                <TextBlock Text="{Binding FloodedLocationsText}" TextWrapping="Wrap" />
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+
+                                    <!-- Minimum -->
+                                    <Border Visibility="{Binding IsMinimum, Converter={StaticResource BooleanToVisibilityConverter}}" BorderBrush="{StaticResource PhoneInverseInactiveBrush}" BorderThickness="2" CornerRadius="3"  HorizontalAlignment="Stretch"  >
+                                        <Grid Margin="6,0">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Path=AppResources.ForecastLowTideTitle, Source={StaticResource LocalizedStrings}}" />
+                                                <TextBlock Text="{Binding FormattedDay}" TextWrapping="NoWrap" HorizontalAlignment="Left" FontSize="20"  />
+                                                <TextBlock Text="{Binding Path=AppResources.ForecastLowTideTimeLead, Source={StaticResource LocalizedStrings}}" FontSize="20" />
+                                                <TextBlock Text="{Binding FormattedTime}" TextWrapping="NoWrap" HorizontalAlignment="Left" FontSize="20" />
+                                            </StackPanel>
+                                            <TextBlock Text="{Binding Height}" TextWrapping="NoWrap" HorizontalAlignment="Right" FontSize="20"  />
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </controls:PivotItem>
+        </controls:Pivot>
+
+
+    </Grid>
+
+    <!-- App bar -->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Default">
+            <shell:ApplicationBarIconButton Text="locations" IconUri="/Toolkit.Content/ApplicationBar.Select.png" Click="AppBar_SelectFavs_Click" />
+
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="About" Click="AppBar_About_Click" />
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+</phone:PhoneApplicationPage>

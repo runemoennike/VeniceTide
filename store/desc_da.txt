@@ -1,0 +1,16 @@
+Hold dine fødder tøre: Rejs ikke til det smukke Venedig uden denne app!
+
+Venice Tid viser dig den aktuelle tidevandstand i Venedig, Italien, samt prognose for de kommende 2-3 dage. Tilføj de steder du befærder dig ofte; appet vil vise dig hvorvidt disse er oversvømmede eller ej og om de vil blive oversvømmede i de kommende dage.
+
+Enkelt og let at bruge. Perfekt til både beboere og turister. Tilbyder et live tile der holder dig opdateret med vigtige informationer.
+
+Ændringer:
+v1.1
+- Tilføjede live tile.
+
+----
+
+venice
+venedig
+tidevand
+højvande

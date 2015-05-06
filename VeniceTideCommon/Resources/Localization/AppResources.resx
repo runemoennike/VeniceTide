@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutPageBasedOn" xml:space="preserve">
+    <value>Data on tide phases and heights are based on values from the City of Venice web site (www.comune.venezia.it).</value>
+  </data>
+  <data name="AboutPageGuidance" xml:space="preserve">
+    <value>This app is strictly for rough guidance and should never be relied upon in critical situations.</value>
+  </data>
+  <data name="AboutPageInet" xml:space="preserve">
+    <value>This app uses your phone's internet connection to retrieve tide data which might be taxed by your subscription provider.</value>
+  </data>
+  <data name="AboutPageLead" xml:space="preserve">
+    <value>Venice Tide by LionFisk, 2013. Feedback very much appreciated at contact@lionfisk.com. Unfortunately we cannot reply to reviews on the Store.</value>
+  </data>
+  <data name="AboutPageNoGuarantee" xml:space="preserve">
+    <value>The tide height values are predictions and calculations. LionFisk provides no guarantee as to the accuracies of these predictions and calculations.</value>
+  </data>
+  <data name="AboutPageTitle" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AboutPageTranslations" xml:space="preserve">
+    <value>Translations provided by Lavinia Sella.</value>
+  </data>
+  <data name="AppBarAbout" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AppBarLiveTile" xml:space="preserve">
+    <value>Live tile</value>
+  </data>
+  <data name="AppBarLocations" xml:space="preserve">
+    <value>locations</value>
+  </data>
+  <data name="AppTitle" xml:space="preserve">
+    <value>Venice Tide</value>
+  </data>
+  <data name="BackgroundAgentDisabledErrorMsg" xml:space="preserve">
+    <value>It seems that you have disabled the Background Task that allows Venice Tide to automatically update the live tile. Please reenable this in Settings, Applications, Background Tasks before adding the live tile.</value>
+  </data>
+  <data name="CurrentFavLocsTitle" xml:space="preserve">
+    <value>Your locations</value>
+  </data>
+  <data name="CurrentTideLevelNote" xml:space="preserve">
+    <value>(calculated from predictions)</value>
+    <comment>In parentheses</comment>
+  </data>
+  <data name="CurrentTideLevelTitle" xml:space="preserve">
+    <value>Tide level</value>
+  </data>
+  <data name="EditFavsPageTitle" xml:space="preserve">
+    <value>Edit locations</value>
+  </data>
+  <data name="ForecastHighTideTimeLead" xml:space="preserve">
+    <value> - </value>
+    <comment>Spaces around</comment>
+  </data>
+  <data name="ForecastLowTideTimeLead" xml:space="preserve">
+    <value> at </value>
+    <comment>Spaces around</comment>
+  </data>
+  <data name="ForecastLowTideTitle" xml:space="preserve">
+    <value>Low tide: </value>
+    <comment>Space after</comment>
+  </data>
+  <data name="ListSeparatorWithSpace" xml:space="preserve">
+    <value>, </value>
+    <comment>Space after</comment>
+  </data>
+  <data name="LiveTileCurrentlyTitle" xml:space="preserve">
+    <value>Currently</value>
+  </data>
+  <data name="LiveTileDataNotFresh" xml:space="preserve">
+    <value>It seems that Venice Tide has not yet been able to download updated tide data from the internet. Please be aware that the live tile will not be accurate until fresh data has been downloaded.</value>
+  </data>
+  <data name="LiveTileForecastTitle" xml:space="preserve">
+    <value>Forecast</value>
+  </data>
+  <data name="LiveTilePageAddBtn" xml:space="preserve">
+    <value>Add live tile</value>
+  </data>
+  <data name="LiveTilePageExplanation" xml:space="preserve">
+    <value>Adding a live tile from Venice Tide to your start screen you will be able to know about the level of the coming high tides. It will also show the flooding status of your favorite locations. Please note that the live tile cannot update more often than once every 30 minutes due to Windows Phone restrictions.</value>
+  </data>
+  <data name="LiveTilePageTitle" xml:space="preserve">
+    <value>Live Tile</value>
+  </data>
+  <data name="LocHeightDescAbove" xml:space="preserve">
+    <value>and {0}cm above current tide level.</value>
+    <comment>{0} is level in cm</comment>
+  </data>
+  <data name="LocHeightDescFlooded" xml:space="preserve">
+    <value>and is currently flooded by {0}cm.</value>
+    <comment>{0} is level in cm</comment>
+  </data>
+  <data name="LocHeightDescLead" xml:space="preserve">
+    <value>Location is {0}cm above mean sea level</value>
+    <comment>{0} is level in cm</comment>
+  </data>
+  <data name="LocHeightDescSlightlyAbove" xml:space="preserve">
+    <value>but only {0}cm above current tide level.</value>
+    <comment>{0} is level in cm</comment>
+  </data>
+  <data name="LocHeightDescSlightlyUnder" xml:space="preserve">
+    <value>and {0}cm below current tide level.</value>
+    <comment>{0} is level in cm</comment>
+  </data>
+  <data name="LocHeightText" xml:space="preserve">
+    <value>{0}cm above mean sea level.</value>
+    <comment>{0} is level in cm</comment>
+  </data>
+  <data name="MainPivotCurrentlyTitle" xml:space="preserve">
+    <value>Currently</value>
+  </data>
+  <data name="MainPivotForecastTitle" xml:space="preserve">
+    <value>Forecast</value>
+  </data>
+  <data name="ProgressBarRefreshingData" xml:space="preserve">
+    <value>Refreshing...</value>
+  </data>
+  <data name="TideDPFloodedLocs" xml:space="preserve">
+    <value>Flooded locations: {0}.</value>
+    <comment>{0} is flooded location list</comment>
+  </data>
+  <data name="TideDPNoFloodedLocs" xml:space="preserve">
+    <value>None of your locations will likely be flooded.</value>
+  </data>
+</root>
