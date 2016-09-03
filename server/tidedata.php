@@ -7,7 +7,9 @@ if($nextupdate < time()) {
 echo file_get_contents("tidedata.json");
 
 function update() {
-	$ch = curl_init("http://www.comune.venezia.it/flex/cm/pages/ServeBLOB.php/L/EN/IDPagina/2104");
+	$url = 'http://www.comune.venezia.it/archivio/EN/2104';
+	//$url = 'http://www.comune.venezia.it/flex/cm/pages/ServeBLOB.php/L/EN/IDPagina/2104';
+	$ch = curl_init($url);
 	curl_setopt($ch, CURLOPT_HEADER, 0);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER , true);
 	$data = curl_exec($ch);
@@ -43,4 +45,3 @@ function update() {
 		file_put_contents("tidedata.nexttime", time() + rand(3600, 3600*2));
 	}
 }
-?>
